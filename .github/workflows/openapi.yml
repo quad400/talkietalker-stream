@@ -1,0 +1,65 @@
+name: OpenAPI
+
+on:
+  push:
+    paths:
+      - "stream-web/docs/openapi.yaml"
+      - "stream-web/docs/openapi-sdk.yaml"
+      - "stream-docs/public/openapi.yaml"
+      - "stream-docs/scripts/sync-openapi.mjs"
+      - "scripts/openapi-add-visibility.py"
+      - "scripts/openapi-filter-sdk.py"
+      - "scripts/generate-sdks.sh"
+      - "packages/**"
+      - ".github/workflows/openapi.yml"
+  pull_request:
+    paths:
+      - "stream-web/docs/openapi.yaml"
+      - "stream-web/docs/openapi-sdk.yaml"
+      - "stream-docs/public/openapi.yaml"
+      - "stream-docs/scripts/sync-openapi.mjs"
+      - "scripts/openapi-add-visibility.py"
+      - "scripts/openapi-filter-sdk.py"
+      - "scripts/generate-sdks.sh"
+      - "packages/**"
+      - ".github/workflows/openapi.yml"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Lint OpenAPI spec
+        run: npx --yes @redocly/cli@1.34.0 lint stream-web/docs/openapi.yaml
+
+      - name: Sync OpenAPI to stream-docs
+        run: node stream-docs/scripts/sync-openapi.mjs
+
+  sdk-codegen:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.25"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install oapi-codegen
+        run: go install github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@v2.4.1
+      - name: Regenerate SDK artifacts
+        run: ./scripts/generate-sdks.sh
+      - name: Fail if generated SDKs drift
+        run: git diff --exit-code packages/ stream-web/docs/openapi-sdk.yaml
+      - name: Test Go SDK
+        working-directory: packages/streamflow-go
+        run: go test ./...
+      - name: Test Node SDK
+        run: |
+          npm install
+          npm run build --workspace=@streamflow/node
+          npm test --workspace=@streamflow/node

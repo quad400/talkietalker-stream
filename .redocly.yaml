@@ -1,0 +1,13 @@
+extends:
+  - recommended
+
+rules:
+  # OpenAPI 3.1 uses type arrays for nullable; legacy spec uses nullable: true
+  struct: off
+  info-license: off
+  no-server-example.com: off
+  no-ambiguous-paths: warn
+  operation-4xx-response: warn
+  operation-2xx-response: warn
+  no-unused-components: warn
+  no-invalid-media-type-examples: warn

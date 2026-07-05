@@ -1,0 +1,62 @@
+name: Quickstart
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "examples/**"
+      - "packages/streamflow-js/**"
+      - "scripts/verify-quickstart.sh"
+      - ".github/workflows/quickstart.yml"
+  pull_request:
+    paths:
+      - "examples/**"
+      - "packages/streamflow-js/**"
+      - "scripts/verify-quickstart.sh"
+      - ".github/workflows/quickstart.yml"
+
+jobs:
+  verify-scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install monorepo dependencies
+        run: npm install
+
+      - name: Verify quickstart examples
+        run: |
+          chmod +x scripts/verify-quickstart.sh
+          ./scripts/verify-quickstart.sh
+
+  verify-live:
+    runs-on: ubuntu-latest
+    needs: verify-scripts
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install monorepo dependencies
+        run: npm install
+
+      - name: Live API check (optional)
+        env:
+          STREAMFLOW_SECRET_KEY: ${{ secrets.STREAMFLOW_SECRET_KEY }}
+          STREAMFLOW_API_URL: ${{ vars.STREAMFLOW_API_URL }}
+        run: |
+          chmod +x scripts/verify-quickstart.sh
+          if [[ -z "${STREAMFLOW_SECRET_KEY:-}" ]]; then
+            echo "STREAMFLOW_SECRET_KEY not configured — skipping live API verification"
+            exit 0
+          fi
+          ./scripts/verify-quickstart.sh

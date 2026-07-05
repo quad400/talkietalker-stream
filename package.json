@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "workspaces": ["stream-web", "packages/*"],
+  "scripts": {
+    "dev:web": "npm run dev --workspace=stream-web",
+    "build:web": "npm run build --workspace=stream-web",
+    "build:react": "npm run build --workspace=@streamflow/react"
+  }
+}

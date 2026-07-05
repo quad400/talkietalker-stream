@@ -1,0 +1,76 @@
+# Separate apps & services (tracked in their own repos, not this umbrella)
+/dev-platform/
+/scripts/
+/stream-backend/
+/stream-docs/
+/stream-web/
+
+# Dependencies
+node_modules/
+
+# Environment & secrets (keep checked-in examples)
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Build outputs
+.next/
+out/
+build/
+*.tsbuildinfo
+next-env.d.ts
+
+# Package dist is committed for SDK packages; ignore elsewhere
+examples/**/dist/
+
+# Test & coverage
+coverage/
+*.lcov
+
+# Logs & caches
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+tmp/
+temp/
+cache/
+.turbo/
+
+# Go
+bin/
+*.exe
+*.exe~
+*.test
+*.out
+coverage.out
+
+# Python (scripts/)
+.venv/
+__pycache__/
+*.py[cod]
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE / editor
+.idea/
+*.swp
+*.swo
+*~
+
+# Yarn PnP
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# TLS / keys
+*.pem
