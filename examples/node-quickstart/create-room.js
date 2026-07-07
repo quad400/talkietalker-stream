@@ -1,14 +1,14 @@
-import { StreamFlow } from '@streamflow/node'
+import { TalkieTalkerStream } from '@talkietalker/stream-sdk'
 
-const apiKey = process.env.STREAMFLOW_SECRET_KEY
+const apiKey = process.env.TALKIETALKER_STREAM_SECRET_KEY
 if (!apiKey) {
-  console.error('Set STREAMFLOW_SECRET_KEY (e.g. sk_test_...)')
+  console.error('Set TALKIETALKER_STREAM_SECRET_KEY (e.g. sk_test_...)')
   process.exit(1)
 }
 
-const baseURL = process.env.STREAMFLOW_API_URL ?? 'http://localhost:8080'
+const baseURL = process.env.TALKIETALKER_STREAM_API_URL ?? 'http://localhost:8080'
 
-const sf = new StreamFlow({ apiKey, baseURL })
+const sf = new TalkieTalkerStream({ apiKey, baseURL })
 
 const stream = await sf.streams.create(
   {

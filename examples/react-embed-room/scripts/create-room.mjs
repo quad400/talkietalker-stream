@@ -1,14 +1,14 @@
 import { writeFileSync, readFileSync, existsSync } from "node:fs"
 import { resolve } from "node:path"
-import { StreamFlow } from "@streamflow/node"
+import { TalkieTalkerStream } from "@talkietalker/stream-sdk"
 
-const secretKey = process.env.STREAMFLOW_SECRET_KEY
+const secretKey = process.env.TALKIETALKER_STREAM_SECRET_KEY
 if (!secretKey) {
-  console.error("Set STREAMFLOW_SECRET_KEY (sk_test_...)")
+  console.error("Set TALKIETALKER_STREAM_SECRET_KEY (sk_test_...)")
   process.exit(1)
 }
 
-const sf = new StreamFlow({ apiKey: secretKey })
+const sf = new TalkieTalkerStream({ apiKey: secretKey })
 
 const stream = await sf.streams.create({
   title: "React live room",

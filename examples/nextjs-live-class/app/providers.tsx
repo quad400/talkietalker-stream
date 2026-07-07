@@ -1,8 +1,17 @@
 "use client"
 
-import { StreamFlow } from "@streamflow/react"
-import "@streamflow/react/styles.css"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { useState } from "react"
+
+import { TalkieTalkerStream } from "@talkietalker/stream-react"
+import "@talkietalker/stream-react/styles.css"
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  return <StreamFlow>{children}</StreamFlow>
+  const [queryClient] = useState(() => new QueryClient())
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TalkieTalkerStream>{children}</TalkieTalkerStream>
+    </QueryClientProvider>
+  )
 }

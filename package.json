@@ -1,9 +1,9 @@
 {
   "private": true,
-  "workspaces": ["stream-web", "packages/*"],
+  "workspaces": ["talkietalker-stream-web", "packages/*"],
   "scripts": {
-    "dev:web": "npm run dev --workspace=stream-web",
-    "build:web": "npm run build --workspace=stream-web",
-    "build:react": "npm run build --workspace=@streamflow/react"
+    "dev:web": "npm run dev --workspace=talkietalker-stream-web",
+    "build:web": "npm run build --workspace=talkietalker-stream-web",
+    "build:react": "npm run build --workspace=@talkietalker/stream-react"
   }
 }

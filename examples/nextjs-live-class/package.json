@@ -1,24 +1,42 @@
 {
-  "name": "streamflow-nextjs-live-class",
+  "name": "talkietalker-stream-nextjs-live-class",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3002",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start -p 3002",
-    "create-room": "node --env-file=.env.local scripts/create-room.mjs"
+    "postinstall": "prisma generate",
+    "db:up": "docker compose up -d",
+    "db:push": "prisma db push",
+    "db:seed": "node --env-file=.env scripts/seed.mjs",
+    "create-room": "node --env-file=.env scripts/create-room.mjs"
   },
   "dependencies": {
-    "@streamflow/node": "0.1.0",
-    "@streamflow/react": "0.1.0",
+    "@prisma/client": "^6.8.2",
+    "@radix-ui/react-label": "^2.1.4",
+    "@radix-ui/react-select": "^2.2.2",
+    "@radix-ui/react-slot": "^1.2.0",
+    "@radix-ui/react-tabs": "^1.1.9",
+    "@talkietalker/stream-sdk": "file:../../packages/talkietalker-stream-node",
+    "@talkietalker/stream-react": "file:../../packages/talkietalker-stream-react",
+    "@tanstack/react-query": "^5.76.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.511.0",
     "next": "^15.1.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.7",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^16.6.1",
+    "prisma": "^6.8.2",
+    "tailwindcss": "^4.1.7",
     "typescript": "^5"
   }
 }

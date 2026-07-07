@@ -3,10 +3,10 @@ name: OpenAPI
 on:
   push:
     paths:
-      - "stream-web/docs/openapi.yaml"
-      - "stream-web/docs/openapi-sdk.yaml"
-      - "stream-docs/public/openapi.yaml"
-      - "stream-docs/scripts/sync-openapi.mjs"
+      - "talkietalker-stream-web/docs/openapi.yaml"
+      - "talkietalker-stream-web/docs/openapi-sdk.yaml"
+      - "talkietalker-stream-docs/public/openapi.yaml"
+      - "talkietalker-stream-docs/scripts/sync-openapi.mjs"
       - "scripts/openapi-add-visibility.py"
       - "scripts/openapi-filter-sdk.py"
       - "scripts/generate-sdks.sh"
@@ -14,10 +14,10 @@ on:
       - ".github/workflows/openapi.yml"
   pull_request:
     paths:
-      - "stream-web/docs/openapi.yaml"
-      - "stream-web/docs/openapi-sdk.yaml"
-      - "stream-docs/public/openapi.yaml"
-      - "stream-docs/scripts/sync-openapi.mjs"
+      - "talkietalker-stream-web/docs/openapi.yaml"
+      - "talkietalker-stream-web/docs/openapi-sdk.yaml"
+      - "talkietalker-stream-docs/public/openapi.yaml"
+      - "talkietalker-stream-docs/scripts/sync-openapi.mjs"
       - "scripts/openapi-add-visibility.py"
       - "scripts/openapi-filter-sdk.py"
       - "scripts/generate-sdks.sh"
@@ -33,10 +33,10 @@ jobs:
         with:
           node-version: "20"
       - name: Lint OpenAPI spec
-        run: npx --yes @redocly/cli@1.34.0 lint stream-web/docs/openapi.yaml
+        run: npx --yes @redocly/cli@1.34.0 lint talkietalker-stream-web/docs/openapi.yaml
 
-      - name: Sync OpenAPI to stream-docs
-        run: node stream-docs/scripts/sync-openapi.mjs
+      - name: Sync OpenAPI to talkietalker-stream-docs
+        run: node talkietalker-stream-docs/scripts/sync-openapi.mjs
 
   sdk-codegen:
     runs-on: ubuntu-latest
@@ -54,12 +54,12 @@ jobs:
       - name: Regenerate SDK artifacts
         run: ./scripts/generate-sdks.sh
       - name: Fail if generated SDKs drift
-        run: git diff --exit-code packages/ stream-web/docs/openapi-sdk.yaml
+        run: git diff --exit-code packages/ talkietalker-stream-web/docs/openapi-sdk.yaml
       - name: Test Go SDK
-        working-directory: packages/streamflow-go
+        working-directory: packages/talkietalker-stream-go
         run: go test ./...
       - name: Test Node SDK
         run: |
           npm install
-          npm run build --workspace=@streamflow/node
-          npm test --workspace=@streamflow/node
+          npm run build --workspace=@talkietalker/stream-sdk
+          npm test --workspace=@talkietalker/stream-sdk

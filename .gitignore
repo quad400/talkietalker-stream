@@ -74,3 +74,5 @@ Thumbs.db
 
 # TLS / keys
 *.pem
+
+/packages/**/dist

@@ -1,0 +1,55 @@
+{
+  "name": "@talkietalker/stream-sdk",
+  "version": "0.1.0",
+  "description": "TalkieTalker Stream server SDK for Node.js",
+  "license": "MIT",
+  "keywords": [
+    "stream",
+    "meet"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "author": "TalkieTalker Team<adedijiabdulquadri@gmail.com>",
+  "licence": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quad400/talkietalker-stream.git",
+    "directory": "packages/talkietalker-stream-node"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "ARCHITECTURE.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "peerDependencies": {
+    "express": ">=4",
+    "fastify": ">=4"
+  },
+  "peerDependenciesMeta": {
+    "express": {
+      "optional": true
+    },
+    "fastify": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.2",
+    "express": "^4.21.2",
+    "fastify": "^5.2.1",
+    "msw": "^2.7.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

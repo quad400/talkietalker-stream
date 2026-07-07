@@ -1,15 +1,15 @@
 import express from "express"
-import { streamflowRouter } from "@streamflow/node/express"
+import { talkieTalkerStreamRouter } from "@talkietalker/stream-sdk/express"
 
 const app = express()
 const PORT = process.env.PORT || 3456
 
-app.use("/api/streamflow", streamflowRouter())
+app.use("/api/talkietalker-stream", talkieTalkerStreamRouter())
 
 app.get("/health", (_req, res) => {
   res.json({ ok: true })
 })
 
 app.listen(PORT, () => {
-  console.log(`Webhook receiver listening on http://localhost:${PORT}/api/streamflow/webhooks`)
+  console.log(`Webhook receiver listening on http://localhost:${PORT}/api/talkietalker-stream/webhooks`)
 })

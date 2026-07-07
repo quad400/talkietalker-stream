@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      "/api/streamflow": "http://localhost:3001",
+      "/api/talkietalker-stream": "http://localhost:3001",
     },
   },
 })

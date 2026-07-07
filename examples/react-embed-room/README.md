@@ -1,4 +1,4 @@
-# StreamFlow React (Vite) example
+# TalkieTalker Stream React (Vite) example
 
 Everything you need for a plain React + Vite app with live rooms.
 
@@ -10,7 +10,7 @@ Everything you need for a plain React + Vite app with live rooms.
 ## Setup
 
 ```bash
-cd examples/react-embed-room
+cd examples/stream-react-embed-room
 npm install
 cp .env.example .env
 ```
@@ -18,9 +18,9 @@ cp .env.example .env
 Fill in `.env`:
 
 ```bash
-STREAMFLOW_SECRET_KEY=sk_test_...
-STREAMFLOW_WEBHOOK_SECRET=whsec_...
-VITE_STREAMFLOW_PUBLISH_KEY=pk_test_...
+TALKIETALKER_STREAM_SECRET_KEY=sk_test_...
+TALKIETALKER_STREAM_WEBHOOK_SECRET=whsec_...
+VITE_TALKIETALKER_STREAM_PUBLISH_KEY=pk_test_...
 ```
 
 Create a room (writes `VITE_ROOM_ID` into `.env`):
@@ -41,9 +41,9 @@ Open http://localhost:5173
 
 | File | Purpose |
 |------|---------|
-| `server/dev-server.mjs` | Express token route (`streamflowRouter()`) |
-| `src/main.tsx` | `<StreamFlow>` + `<StreamFlowRoom>` |
-| `vite.config.ts` | Proxies `/api/streamflow` → Express on `:3001` |
+| `server/dev-server.mjs` | Express token route (`talkieTalkerStreamRouter()`) |
+| `src/main.tsx` | `<TalkieTalkerStream>` + `<TalkieTalkerRoom>` |
+| `vite.config.ts` | Proxies `/api/talkietalker-stream` → Express on `:3001` |
 | `scripts/create-room.mjs` | Creates a room and saves ID to `.env` |
 
 ## vs Next.js example

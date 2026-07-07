@@ -1,13 +1,13 @@
 {
-  "name": "streamflow-node-quickstart",
+  "name": "talkietalker-stream-node-quickstart",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "StreamFlow Node SDK quickstart example",
+  "description": "TalkieTalker Stream Node SDK quickstart example",
   "scripts": {
     "start": "node create-room.js"
   },
   "dependencies": {
-    "@streamflow/node": "0.1.0"
+    "@talkietalker/stream-sdk": "0.1.0"
   }
 }

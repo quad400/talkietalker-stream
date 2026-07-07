@@ -5,13 +5,13 @@ on:
     branches: [main]
     paths:
       - "examples/**"
-      - "packages/streamflow-js/**"
+      - "packages/talkietalker-stream-node/**"
       - "scripts/verify-quickstart.sh"
       - ".github/workflows/quickstart.yml"
   pull_request:
     paths:
       - "examples/**"
-      - "packages/streamflow-js/**"
+      - "packages/talkietalker-stream-node/**"
       - "scripts/verify-quickstart.sh"
       - ".github/workflows/quickstart.yml"
 
@@ -51,12 +51,12 @@ jobs:
 
       - name: Live API check (optional)
         env:
-          STREAMFLOW_SECRET_KEY: ${{ secrets.STREAMFLOW_SECRET_KEY }}
-          STREAMFLOW_API_URL: ${{ vars.STREAMFLOW_API_URL }}
+          TALKIETALKER_STREAM_SECRET_KEY: ${{ secrets.TALKIETALKER_STREAM_SECRET_KEY }}
+          TALKIETALKER_STREAM_API_URL: ${{ vars.TALKIETALKER_STREAM_API_URL }}
         run: |
           chmod +x scripts/verify-quickstart.sh
-          if [[ -z "${STREAMFLOW_SECRET_KEY:-}" ]]; then
-            echo "STREAMFLOW_SECRET_KEY not configured — skipping live API verification"
+          if [[ -z "${TALKIETALKER_STREAM_SECRET_KEY:-}" ]]; then
+            echo "TALKIETALKER_STREAM_SECRET_KEY not configured — skipping live API verification"
             exit 0
           fi
           ./scripts/verify-quickstart.sh

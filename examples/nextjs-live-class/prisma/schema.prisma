@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model LiveClass {
+  id          String       @id @default(cuid())
+  title       String
+  description String?
+  streamId    String       @unique
+  hostName    String
+  status      String       @default("idle")
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  enrollments Enrollment[]
+}
+
+model Enrollment {
+  id          String    @id @default(cuid())
+  classId     String
+  studentName String
+  createdAt   DateTime  @default(now())
+  class       LiveClass @relation(fields: [classId], references: [id], onDelete: Cascade)
+
+  @@unique([classId, studentName])
+}
+
+model WebhookLog {
+  id        String   @id @default(cuid())
+  eventType String
+  payload   String
+  createdAt DateTime @default(now())
+}

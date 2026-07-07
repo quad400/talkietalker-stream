@@ -1,6 +1,6 @@
-# StreamFlow webhook receiver (example)
+# TalkieTalkerStream webhook receiver (example)
 
-Minimal Express server that verifies `X-StreamFlow-Signature` and logs events. Optional step 6 of the [developer quickstart](https://github.com/quad400/stream/tree/main/stream-docs/content/developers/quickstart.mdx).
+Minimal Express server that verifies `X-TalkieTalker-Stream-Signature` and logs events. Optional step 6 of the [developer quickstart](https://github.com/talkietalker/talkietalker-stream/tree/main/talkietalker-stream-docs/content/developers/quickstart.mdx).
 
 ## Prerequisites
 

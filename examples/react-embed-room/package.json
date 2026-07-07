@@ -1,5 +1,5 @@
 {
-  "name": "streamflow-react-embed-room",
+  "name": "talkietalker-stream-react-embed-room",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@streamflow/node": "0.1.0",
-    "@streamflow/react": "0.1.0",
+    "@talkietalker/stream-sdk": "0.1.0",
+    "@talkietalker/stream-react": "0.1.0",
     "express": "^4.21.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
